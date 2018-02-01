@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Product.css';
+import MaterialIcon from 'material-icons-react';
 
 class Product extends Component {
 
@@ -47,14 +48,30 @@ class Product extends Component {
               alt=""
             />
           </div>
+          <div className="separator-line"/>
+          <div className="tools">
+            <span className="tool tool-add">
+              <MaterialIcon icon="add" />
+            </span>
+            <span className="tool tool-update">
+              <MaterialIcon icon="edit" />
+            </span>
+            <span className="tool tool-delete">
+              <MaterialIcon icon="delete" />
+            </span>
+          </div>
         </div>
         <div className="footer">
-          <div className="description">{product.description}</div>
-          <div className="price">$ {product.price}</div>
-          <div className="tools">
-            <span className="tool">tool</span>
-            <span className="tool">tool</span>
-            <span className="tool">tool</span>
+          <div className="detail description">{product.description}</div>
+          <div className="detail price">$ {product.price}</div>
+          <div className="detail stock">
+            <span style={
+              {
+                fontWeigth: 'bold',
+                color: 'black'
+              }
+            }>Stock: </span>
+            {product.stock}
           </div>
         </div>
       </div>

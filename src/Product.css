@@ -4,9 +4,10 @@
     font-family: 'Open Sans';
     background-color: #fff;
     width: 100%;
-    border-radius: 0.5em;
+    border-radius: 1em;
     border: 1px solid #eee;
     box-shadow: 0px 2px 6px -2px #555;
+    padding: 1em 0em;
 }
 
 .product * {
@@ -36,24 +37,49 @@
 .product .body .img-preview-wrapper > img {
     width: 100%;
     height: auto;
+    border-radius: 0.25em;
 }
 
-.product .footer .description,
-.product .footer .price {
+.product .separator-line {
+    margin: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+.product .footer .detail {
     color: #555;
     text-align: center;
 }
 
-.product .footer .tools {
+.product .tools {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.product .footer .tools .tool {
-    background-color: #eee;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+.product .tools .tool {
+    border: 1px solid rgba(0, 0, 0, 0.25);
     margin: 0.1em;
     padding: 0 0.5em;
-    border-radius: 0.5em;
+    border-radius: 50%;
+    font-size: 0.8em;
+    padding: 0.4em;
+    margin: 0.2em;
+    display: inline-flex;
+    transition: all 200ms ease-in-out;
+}
+
+.product .tools .tool:hover {
+    
+}
+
+.product .tools .tool.tool-add:hover {
+    background-color: #75e675;
+}
+
+.product .tools .tool.tool-update:hover {
+    background-color: #5ea0d8;
+}
+
+.product .tools .tool.tool-delete:hover {
+    background-color: #c92929;
 }

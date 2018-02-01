@@ -1,0 +1,23 @@
+.search-wrapper .search {
+    border: none;
+    outline: none;
+    background-color: #292929;
+    font-size: 1em;
+    color: #9e9e9e;
+    border-radius: 0.25em;
+    padding: 0 1em;
+    height: 100%;
+    width: 85%;
+}
+.search-wrapper .search::placeholder {
+    color: #9e9e9e60;
+}
+
+.search-wrapper .search:focus {
+    background-color: #bbb;
+    color: #292929;
+}
+
+.search-wrapper .search:focus::placeholder {
+    color: #5a5a5a;
+}

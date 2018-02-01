@@ -1,12 +1,23 @@
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .app > .header {
-    height: 3em;
-    color: #fff;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #000;
+    color: #fff;
+    padding: 0em 20%;
+    border-bottom: 0.4em solid #a5a5a5;
+}
+
+.app > .header .search-wrapper {
+    height: 50%;
+    width: 30em;
 }
 
 .app .panel-container {
@@ -14,13 +25,13 @@ body {
 }
 
 .app .panel-container .panel {
-    width: 50%;
-    float: left;
+    /* width: 50%;
+    float: left; */
 }
 
 .app .panel-container .products-panel {
-    background-color: blue;
-    height: 97vh;
+    background-color: #ececec;
+    height: 92vh;
     overflow: hidden;
     overflow-y: scroll;
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './ProductList.css';
-import Request from 'superagent';
 import Product from './Product'
 
 function ProductGrid(props) {
-  let products = props.products.map(product =>
+  let products = !props.products
+    ? []
+    : props.products.map(product =>
     <Product
       key={product._id}
       product={product}
@@ -24,13 +25,6 @@ class ProductList extends Component {
 
   componentWillMount() {
     // Called the first time the component is loaded right before the component is added to the page
-    var url = 'http://10.40.10.53:3000/api/product';
-    Request.get(url)
-      .then(result => {
-        this.setState({
-          products: result.body
-        });
-      }).catch(err => {});
   }
 
   componentDidMount() {
@@ -39,6 +33,9 @@ class ProductList extends Component {
 
   componentWillReceiveProps(nextProps) {
     // Called when the props provided to the component are changed
+    this.setState({
+      products: nextProps.products
+    });
   }
 
   componentWillUpdate(nextProps, nextState) {
