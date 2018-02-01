@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.app > .header {
+    height: 3em;
+    color: #fff;
+    background-color: #000;
+}
+
+.app .panel-container {
+    
+}
+
+.app .panel-container .panel {
+    width: 50%;
+    float: left;
+}
+
+.app .panel-container .products-panel {
+    background-color: blue;
+    height: 97vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.app .panel-container .cart-panel {
+    background-color: red;
+}
