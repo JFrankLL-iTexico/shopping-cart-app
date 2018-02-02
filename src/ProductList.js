@@ -9,6 +9,7 @@ function ProductGrid(props) {
     <Product
       key={product._id}
       product={product}
+      addToCart={props.addToCart}
     />
   );
   return (<div className="products-grid">{products}</div>);
@@ -50,6 +51,7 @@ class ProductList extends Component {
     return (
       <ProductGrid
         products={this.state.products}
+        addToCart={this.props.addToCart}
       />
     );
   }

@@ -7,7 +7,8 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      searchMode: 'value'
     };
   }
 
@@ -40,6 +41,12 @@ class SearchBar extends Component {
     });
   }
 
+  updateSelectValue(evt) {
+    this.setState({
+      searchMode: evt.target.value
+    });
+  }
+
   render() {
     return (
         <div className="search-wrapper">
@@ -53,10 +60,15 @@ class SearchBar extends Component {
                   if(this.state.inputValue === '')
                     this.props.handleSearch('value', '')
                   if(evt.key === 'Enter')
-                    this.props.handleSearch('value', this.state.inputValue)
-                    //TODO: search by category
+                    this.props.handleSearch(this.state.searchMode, this.state.inputValue);
                 }}
             />
+            <div className="category">
+              <select onChange={evt => this.updateSelectValue(evt)}>
+                <option value="value">Name</option>
+                <option value="category">Category</option>
+              </select>
+            </div>
         </div>
     );
   }

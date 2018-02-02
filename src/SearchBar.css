@@ -1,14 +1,32 @@
+.search-wrapper {
+    display: flex;
+}
+
 .search-wrapper .search {
     border: none;
     outline: none;
     background-color: #292929;
     font-size: 1em;
     color: #9e9e9e;
-    border-radius: 0.25em;
+    border-radius: 0.25em 0em 0em 0.25em;
     padding: 0 1em;
     height: 100%;
     width: 85%;
 }
+
+.search-wrapper .category {
+    display: inline-flex;
+    align-items: center;
+    background-color: #bbb;
+    border-radius: 0em 0.25em 0.25em 0em;
+    outline: none;
+}
+
+.search-wrapper .category select {
+    height: 100%;
+    background-color: #bbb;
+}
+
 .search-wrapper .search::placeholder {
     color: #9e9e9e60;
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Request from 'superagent';
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
+import Cart from './Cart';
 import './App.css';
 
 class App extends Component {
@@ -9,9 +10,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: []
+      products: [],
+      cart: []
     };
     this.goSearch = this.goSearch.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   //#region lifecycle methods
@@ -55,21 +58,32 @@ class App extends Component {
     this.fetchProducts(mode, value);
   }
 
+  addToCart(product) {
+    var cart = this.state.cart.slice();
+    cart.push({
+      product,
+      quantity: 5
+    });
+    this.setState({
+      cart
+    });
+  }
+
   render() {
     return (
       <div className="app">
         <div className="header">
           <SearchBar
-            handleSearch={this.goSearch}
-          />
+            handleSearch={this.goSearch} />
+          <Cart
+            cart={this.state.cart}
+            className="cart" />
         </div>
         <div className="panel-container">
-          {/*<div className="panel cart-panel">
-              <Cart />
-            </div> */}
           <div className="panel products-panel">
             <ProductList
               products={this.state.products}
+              addToCart={this.addToCart}
             />
           </div>
         </div>

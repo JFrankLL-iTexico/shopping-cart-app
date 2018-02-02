@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Open Sans';
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -18,6 +26,10 @@ body {
 .app > .header .search-wrapper {
     height: 50%;
     width: 30em;
+}
+
+.app > .header .cart-wrapper {
+    margin-left: auto;
 }
 
 .app .panel-container {
