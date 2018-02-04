@@ -1,22 +1,24 @@
+import MaterialIcon from 'material-icons-react';
 import React, { Component } from 'react';
 import './Cart.css';
-import MaterialIcon from 'material-icons-react';
-//import Request from 'superagent';
 
 function Row(props) {
-  return (<div className="prpr">{props.product.product}</div>);
+  return (
+    <div className="cart-row">
+      {props.product.name}
+    </div>
+  );
 }
 
 class Cart extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      cart: props.cart
+      cartItems: props.cart,
     };
   }
 
-  //#region lifecycle
+  // #region lifecycle
   componentWillMount() {
     // Called the first time the component is loaded right before the component is added to the page
   }
@@ -28,7 +30,7 @@ class Cart extends Component {
   componentWillReceiveProps(nextProps) {
     // Called when the props provided to the component are changed
     this.setState({
-      cart: nextProps.cart
+      cartItems: nextProps.cart,
     });
   }
 
@@ -39,20 +41,28 @@ class Cart extends Component {
   componentWillUnmount() {
     // Called when the component is removed
   }
-  //#endregion
+  // #endregion
 
   render() {
-    const cartItems = this.state.cart.map(product => <Row key={product._id} product={product} />);
-    console.log(this.state.cart);
-    
+    const cartItemsRows = !this.state.cartItems.length
+      ? (<div>No items on the cart</div>)
+      : this.state.cartItems.map((product) => {
+        return (
+          <Row
+            key={`cart-row-${product._id}`}
+            product={product}
+          />
+        );
+      });
+
     return (
       <div className="cart-wrapper">
         <span className="cart">
-            <MaterialIcon icon="shopping_cart" />
-            <span className="small">My Cart</span>
+          <MaterialIcon icon="shopping_cart" />
+          <span className="small">My Cart</span>
         </span>
         <div className="list-wrapper">
-          {cartItems}
+          {cartItemsRows}
         </div>
       </div>
     );

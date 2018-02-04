@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import './ProductList.css';
-import Product from './Product'
+import Product from './Product';
 
 function ProductGrid(props) {
-  let products = !props.products
-    ? []
-    : props.products.map(product =>
-    <Product
-      key={product._id}
-      product={product}
-      addToCart={props.addToCart}
-    />
-  );
+  const products = !props.products ? [] :
+    props.products.map((product) => {
+      return (
+        <Product
+          key={product._id}
+          product={product}
+          addToCart={props.addToCart}
+        />
+      );
+    });
   return (<div className="products-grid">{products}</div>);
 }
 
@@ -20,7 +21,7 @@ class ProductList extends Component {
   constructor() {
     super();
     this.state = {
-      products: []
+      products: [],
     };
   }
 
@@ -35,7 +36,7 @@ class ProductList extends Component {
   componentWillReceiveProps(nextProps) {
     // Called when the props provided to the component are changed
     this.setState({
-      products: nextProps.products
+      products: nextProps.products,
     });
   }
 

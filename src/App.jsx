@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import Request from 'superagent';
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
 import Cart from './Cart';
+import * as ProductController from './controllers/productController';
 import './App.css';
 
 class App extends Component {
-
   constructor() {
     super();
     this.state = {
       products: [],
-      cart: []
+      cart: [],
     };
     this.goSearch = this.goSearch.bind(this);
     this.addToCart = this.addToCart.bind(this);
   }
 
-  //#region lifecycle methods
+  // #region lifecycle methods
   componentWillMount() {
     // Called the first time the component is loaded right before the component is added to the page
     this.fetchProducts();
@@ -38,20 +37,16 @@ class App extends Component {
   componentWillUnmount() {
     // Called when the component is removed
   }
-  //#endregion
+  // #endregion
 
-  fetchProducts(mode=null, value='') {
-    var url = 'http://10.40.10.53:3000/api/product';
-    if(mode && value.length > 0) {
-      url += `/search?${mode}=${value}`;
-    }
-    //console.log(mode, value, 'aaa');
-    Request.get(url)
-      .then(result => {
+  fetchProducts(mode = null, value = '') {
+    ProductController.fetchProducts(mode, value, (err, result) => {
+      if (!err) {
         this.setState({
-          products: result.body
+          products: result,
         });
-      }).catch(err => {});
+      }
+    });
   }
 
   goSearch(mode, value) {
@@ -59,26 +54,26 @@ class App extends Component {
   }
 
   addToCart(product) {
-    var cart = this.state.cart.slice();
-    cart.push({
-      product,
-      quantity: 5
-    });
+    const productAux = { ...product, quantity: 5 };
+    const cart = this.state.cart.slice();
+    cart.push(productAux);
     this.setState({
-      cart
+      cart,
     });
   }
 
   render() {
     return (
       <div className="app">
-        <div className="header">
+        <header className="header">
           <SearchBar
-            handleSearch={this.goSearch} />
+            handleSearch={this.goSearch}
+          />
           <Cart
             cart={this.state.cart}
-            className="cart" />
-        </div>
+            className="cart"
+          />
+        </header>
         <div className="panel-container">
           <div className="panel products-panel">
             <ProductList
