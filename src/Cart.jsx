@@ -6,7 +6,14 @@ function Row(props) {
   return (
     <div className="cart-row">
       <span className="name">{props.product.name}</span>
-      <input type="Number" defaultValue={1} />
+      <input
+        type="Number"
+        defaultValue={1}
+        onChange={(e) => {
+          const value = e.target.value;
+          props.updateQuantity(props.product._id, value);
+        }}
+      />
       <span
         role="presentation"
         onClick={() => {
@@ -25,6 +32,7 @@ class Cart extends Component {
     this.state = {
       cartItems: props.cart,
     };
+    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   // #region lifecycle
@@ -52,6 +60,24 @@ class Cart extends Component {
   }
   // #endregion
 
+  updateQuantity(id, value) {
+    let { cartItems } = this.state;
+    cartItems = cartItems.map((item) => {
+      const aux = item;
+      if (item._id === id) {
+        aux.quantity = Number(value);
+      }
+      return aux;
+    });
+    this.setState({ cartItems });
+  }
+
+  clearCartItems() {
+    this.setState({
+      cartItems: [],
+    });
+  }
+
   render() {
     const cartItemsRows = !this.state.cartItems.length
       ? (<div>Empty cart</div>)
@@ -61,6 +87,7 @@ class Cart extends Component {
             key={`cart-row-${product._id}`}
             product={product}
             removeFromCart={this.props.removeFromCart}
+            updateQuantity={this.updateQuantity}
           />
         );
       });
@@ -77,12 +104,13 @@ class Cart extends Component {
             <div className="order-tools">
               <button
                 className="tool tool-accept"
-                onClick={() => { console.log('accept'); }}
+                onClick={() => { this.props.createOrder(this.state.cartItems); }}
               >
                 Accept
               </button>
               <button
                 className="tool tool-abort"
+                onClick={() => { this.clearCartItems(); }}
               >
                 Abort
               </button>

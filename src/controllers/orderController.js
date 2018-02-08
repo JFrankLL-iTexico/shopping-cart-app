@@ -2,14 +2,17 @@ import Request from 'superagent';
 
 const baseUrl = 'http://localhost:3000/api/order';
 
-export function fetchOrders(callback) {
+export function fetchOrders(cb) {
   const url = baseUrl;
   Request.get(url)
-    .then((result) => {
-      callback(null, result.body);
-    }).catch((err) => {
-      callback(err);
-    });
+    .set('Content-Type', 'application/json')
+    .end(cb);
 }
 
-export function extra() {}
+export function insertOrder(body, cb) {
+  const url = baseUrl;
+  Request.post(url)
+    .set('Content-Type', 'application/json')
+    .send(body)
+    .end(cb);
+}

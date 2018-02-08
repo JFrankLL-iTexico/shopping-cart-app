@@ -8,29 +8,28 @@ export function fetchProducts(mode = null, value = '', cb) {
     url += `/search?${mode}=${value}`;
   }
   Request.get(url)
-    .then((result) => {
-      cb(null, result.body);
-    }).catch((err) => {
-      cb(err);
-    });
+    .set('Content-Type', 'application/json')
+    .end(cb);
 }
 
 export function fetchProduct(id, cb) {
   const url = `${baseUrl}/${id}`;
   Request.get(url)
-    .then((result) => {
-      cb(null, result.body);
-    }).catch((err) => {
-      cb(err);
-    });
+    .set('Content-Type', 'application/json')
+    .end(cb);
+}
+
+export function updateProduct(id, body, cb) {
+  const url = `${baseUrl}/${id}`;
+  Request.put(url)
+    .set('Content-Type', 'application/json')
+    .send(body)
+    .end(cb);
 }
 
 export function deleteProduct(id, cb) {
   const url = `${baseUrl}/${id}`;
   Request.delete(url)
-    .then((result) => {
-      cb(null, result.text);
-    }).catch((err) => {
-      cb(err);
-    });
+    .set('Content-Type', 'application/json')
+    .end(cb);
 }

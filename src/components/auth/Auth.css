@@ -1,0 +1,30 @@
+.login-container {
+  margin-top: 6em;
+}
+
+.login-container input {
+  background-color: unset;
+  border: none;
+  margin: 0.5em;
+  padding: 0.5em;
+  outline: none;
+  border-bottom: 2px solid steelblue;
+  font-size: 1em;
+  box-sizing: border-box;
+  width: 18em;
+}
+
+.login-container span.button {
+  width: 100%;
+  height: min-content;
+  background-color: steelblue;
+  border-radius: 0.25em;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 1em;
+  padding: 0.5em 0;
+}

@@ -1,0 +1,29 @@
+.register-container {
+}
+
+.register-container input {
+  background-color: unset;
+  border: none;
+  margin: 0.5em;
+  padding: 0.5em;
+  outline: none;
+  border-bottom: 2px solid seagreen;
+  font-size: 1em;
+  box-sizing: border-box;
+  width: 18em;
+}
+
+.register-container span.button {
+  width: 100%;
+  height: min-content;
+  background-color: seagreen;
+  border-radius: 0.25em;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 1em;
+  padding: 0.5em 0;
+}

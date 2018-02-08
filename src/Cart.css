@@ -19,6 +19,13 @@
     overflow-y: auto;
     z-index: 999;
 }
+
+@media (max-width: 425px) {
+    .cart-wrapper .list-wrapper {
+        left: -591%;
+    }
+}
+
 .cart-wrapper:hover .list-wrapper {
     /* display: block; */
     transform: scaleY(1);

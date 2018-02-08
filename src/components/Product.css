@@ -29,23 +29,15 @@
 .product .body .img-preview-wrapper {
     border-radius: 0.25em;
     overflow: hidden;
-    min-height: 12em;
-    max-height: 12em;
-    /* position: relative;
-    z-index: 997; */
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .product .body .img-preview-wrapper > img {
     width: 100%;
     height: auto;
-    /* position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 998;
-    border-radius: 0.25em; */
 }
 
 .product .separator-line {

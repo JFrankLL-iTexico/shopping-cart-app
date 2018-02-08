@@ -9,6 +9,12 @@ header {
     padding: 0em 12em;
 }
 
+@media (max-width: 768px) {
+    header {
+        padding: 0em;
+    }
+}
+
 header .search-wrapper {
     height: 50%;
     width: 30em;

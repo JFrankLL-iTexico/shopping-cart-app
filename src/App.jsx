@@ -19,6 +19,7 @@ class App extends Component {
     this.fetchOrders = this.fetchOrders.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
+    this.createOrder = this.createOrder.bind(this);
   }
 
   // #region lifecycle methods
@@ -43,13 +44,12 @@ class App extends Component {
     // Called when the component is removed
   }
   // #endregion
-
   // #region ProductList
   fetchProducts(mode = null, value = '') {
     ProductController.fetchProducts(mode, value, (err, result) => {
       if (!err) {
         this.setState({
-          products: result,
+          products: result.body,
         });
       }
     });
@@ -66,33 +66,46 @@ class App extends Component {
     });
   }
   // #endregion
-
   // #region Search
   goSearch(mode, value) {
     this.fetchProducts(mode, value);
   }
   // #endregion
-
   // #region Cart
   addToCart(product) {
-    const productAux = { ...product, quantity: 5 };
+    const productAux = { ...product, quantity: 1 };
     const cart = this.state.cart.slice();
-    if (!cart.some(item => item._id === productAux._id)) {
+    if (!cart.some(item => item._id === productAux.product)) {
       cart.push(productAux);
-      this.setState({
-        cart,
-      });
+      this.setState({ cart });
     }
   }
   removeFromCart(id) {
     let cart = this.state.cart.slice(0);
     cart = cart.filter(item => id !== item._id);
-    this.setState({
-      cart,
-    });
+    this.setState({ cart });
   }
   fetchOrders() {
     OrderController.fetchOrders((err, result) => {
+      console.log(result);
+    });
+  }
+  createOrder() {
+    const body = {
+      status: 'pending',
+      products: this.state.cart.map((item) => {
+        const itemAux = item;
+        itemAux.product = item._id;
+        itemAux.quantity = item.quantity;
+        return itemAux;
+      }),
+      client_id: '5a79dc6903e0f1050c40ef04', // FIXME: Use a real client id!!!
+    };
+    OrderController.insertOrder(body, (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
       console.log(result);
     });
   }
@@ -104,12 +117,15 @@ class App extends Component {
         <Navigation
           extraComponents={[
             <SearchBar
+              key="extra-1"
               handleSearch={this.goSearch}
             />,
             <Cart
+              key="extra-2"
               cart={this.state.cart}
               className="cart"
               removeFromCart={this.removeFromCart}
+              createOrder={this.createOrder}
             />,
           ]}
         />

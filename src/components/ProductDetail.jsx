@@ -8,9 +8,10 @@ class ProductDetail extends Component {
     super(props);
     this.state = {
       id: props.match.params.id,
-      data: null,
+      show: false,
     };
     this.fetchData();
+    this.updateProduct = this.updateProduct.bind(this);
   }
 
   // #region lifecycle
@@ -39,29 +40,110 @@ class ProductDetail extends Component {
     const id = this.state.id;
     ProductController.fetchProduct(id, (err, data) => {
       if (!err) {
-        console.log(data);
         this.setState({
-          data
+          ...data.body,
+          show: true,
         });
       }
     });
   }
 
+  updateProduct() {
+    const id = this.state._id;
+    const body = {
+      name: this.state.name,
+      price: Number(this.state.price),
+      description: this.state.description,
+      stock: Number(this.state.stock),
+      category: this.state.category,
+      imageUrl: this.state.imageUrl,
+    };
+    ProductController.updateProduct(id, body, (err, result) => {
+      if (!err) {
+        //TODO: alert successful transaction
+      }
+    });
+  }
+
+  // #region onChange Handlers
+  imgOnChangeHandler(e) {
+    const imageUrl = e.target.value;
+    this.setState({ imageUrl });
+  }
+  nameOnChangeHandler(e) {
+    const name = e.target.value;
+    this.setState({ name });
+  }
+  categoryOnChangeHandler(e) {
+    const category = e.target.value;
+    this.setState({ category });
+  }
+  descriptionOnChangeHandler(e) {
+    const description = e.target.value;
+    this.setState({ description });
+  }
+  priceOnChangeHandler(e) {
+    const price = e.target.value;
+    this.setState({ price });
+  }
+  stockOnChangeHandler(e) {
+    const stock = e.target.value;
+    this.setState({ stock });
+  }
+  // #endregion
+
   render() {
-    const data = this.state.data;
-    return (data &&
+    return (this.state.show &&
       <div>
         <Navigation />
         <div className="product-detail">
           <div className="img-wrapper">
-            <img src={data.imageUrl} alt="" />
+            <img src={this.state.imageUrl} alt="" />
           </div>
-          <input value={data.imageUrl} />
-          <input value={data.name} />
-          <input value={data.category} />
-          <input value={data.description} />
-          <input value={data.price} />
-          <input value={data.stock} />
+          <span>image Url: </span>
+          <input
+            type="text"
+            value={this.state.imageUrl}
+            onChange={e => this.imgOnChangeHandler(e)}
+          />
+          <span>Name: </span>
+          <input
+            type="text"
+            value={this.state.name}
+            onChange={e => this.nameOnChangeHandler(e)}
+          />
+          <span>Category: </span>
+          <input
+            type="text"
+            value={this.state.category}
+            onChange={e => this.categoryOnChangeHandler(e)}
+          />
+          <span>Description: </span>
+          <input
+            type="text"
+            value={this.state.description}
+            onChange={e => this.descriptionOnChangeHandler(e)}
+          />
+          <span>Price: </span>
+          <input
+            type="number"
+            value={this.state.price}
+            onChange={e => this.priceOnChangeHandler(e)}
+          />
+          <span>Stock: </span>
+          <input
+            type="number"
+            value={this.state.stock}
+            onChange={e => this.stockOnChangeHandler(e)}
+          />
+          <div className="order-tools">
+            <button
+              className="tool tool-accept"
+              onClick={() => { this.updateProduct(); }}
+            >
+              Save
+            </button>
+          </div>
         </div>
       </div>
     );

@@ -54,7 +54,7 @@ class Navigation extends Component {
 
   render() {
     const links = this.state.listedLinks.map((link, index) => (
-      <Link key={index} to={link.route} href={link.route}>
+      <Link key={`link-${index}`} to={link.route} href={link.route}>
         <div className="linkwrapper">
           <MaterialIcon icon={link.icon} />
           <span>{link.text}</span>
