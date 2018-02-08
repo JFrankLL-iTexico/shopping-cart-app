@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MaterialIcon from 'material-icons-react';
-import * as ProductController from './controllers/productController';
+import { Link } from 'react-router-dom';
 import './Product.css';
 
 class Product extends Component {
@@ -8,9 +8,7 @@ class Product extends Component {
     super();
     this.state = {
       product: {},
-      show: true,
     };
-    this.deleteMe = this.deleteMe.bind(this);
   }
 
   // #region lifecycle
@@ -38,20 +36,9 @@ class Product extends Component {
   }
   // #endregion
 
-  deleteMe() {
-    const id = this.state.product._id;
-    ProductController.deleteProduct(id, (err, result) => {
-      if (!err) {
-        this.setState({
-          show: false,
-        });
-      }
-    });
-  }
-
   render() {
     const product = this.state.product;
-    return (this.state.show &&
+    return (
       <div className="product">
         <div className="header">
           <span className="title">{product.name}</span>
@@ -67,21 +54,21 @@ class Product extends Component {
             <span
               role="presentation"
               className="tool tool-add"
-              onClick={() => { this.props.addToCart(product); }}
+              onClick={() => {
+                this.props.addToCart(product);
+              }}
             >
               <MaterialIcon icon="add" />
             </span>
-            <span
-              role="presentation"
-              className="tool tool-update"
-              onClick={() => { console.log('update'); }}
-            >
-              <MaterialIcon icon="edit" />
-            </span>
+            <Link to={`/products/${this.state.product._id}`} href={`/products/${this.state.product._id}`}>
+              <span role="presentation" className="tool tool-update" >
+                <MaterialIcon icon="edit" />
+              </span>
+            </Link>
             <span
               role="presentation"
               className="tool tool-delete"
-              onClick={this.deleteMe}
+              onClick={() => { this.props.deleteMe(this.state.product._id); }}
             >
               <MaterialIcon icon="delete" />
             </span>

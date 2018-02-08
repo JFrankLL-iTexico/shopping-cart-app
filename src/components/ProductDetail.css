@@ -1,0 +1,24 @@
+.product-detail {
+  margin: auto;
+  max-width: 1000px;
+}
+
+.product-detail input {
+  display: block;
+  width: 100%;
+  margin: 1em;
+  outline: none;
+  padding: 1em;
+  font-size: 1em;
+  border-radius: 0.5em;
+  border: none;
+  background: #eee;
+}
+
+.product-detail .img-wrapper {
+  max-width: 250px;
+}
+
+.product-detail .img-wrapper img {
+  width: 100%;
+}

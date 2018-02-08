@@ -3,5 +3,13 @@
     "plugins": [
         "react",
         "import"
-    ]
+    ],
+    "rules": {
+        "class-methods-use-this": 0,
+        "no-underscore-dangle": 0,
+        "no-unused-vars": 1
+    },
+    "env": {
+        "browser": true
+    }
 }

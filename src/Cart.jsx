@@ -5,7 +5,16 @@ import './Cart.css';
 function Row(props) {
   return (
     <div className="cart-row">
-      {props.product.name}
+      <span className="name">{props.product.name}</span>
+      <input type="Number" defaultValue={1} />
+      <span
+        role="presentation"
+        onClick={() => {
+          props.removeFromCart(props.product._id);
+        }}
+      >
+        <MaterialIcon icon="close" />
+      </span>
     </div>
   );
 }
@@ -45,12 +54,13 @@ class Cart extends Component {
 
   render() {
     const cartItemsRows = !this.state.cartItems.length
-      ? (<div>No items on the cart</div>)
+      ? (<div>Empty cart</div>)
       : this.state.cartItems.map((product) => {
         return (
           <Row
             key={`cart-row-${product._id}`}
             product={product}
+            removeFromCart={this.props.removeFromCart}
           />
         );
       });
@@ -62,7 +72,22 @@ class Cart extends Component {
           <span className="small">My Cart</span>
         </span>
         <div className="list-wrapper">
-          {cartItemsRows}
+          <div className="scroll">{cartItemsRows}</div>
+          { this.state.cartItems.length > 0 &&
+            <div className="order-tools">
+              <button
+                className="tool tool-accept"
+                onClick={() => { console.log('accept'); }}
+              >
+                Accept
+              </button>
+              <button
+                className="tool tool-abort"
+              >
+                Abort
+              </button>
+            </div>
+          }
         </div>
       </div>
     );

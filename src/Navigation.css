@@ -1,0 +1,45 @@
+header {
+    height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    border-bottom: 0.4em solid #a5a5a5;
+    padding: 0em 12em;
+}
+
+header .search-wrapper {
+    height: 50%;
+    width: 30em;
+}
+
+header .cart-wrapper {
+    margin-left: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.linkwrapper {
+    color: #888;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.25em;
+}
+.linkwrapper i {
+    color: #888 !important;
+}
+.linkwrapper > span {
+    font-size: 0.75em;
+}
+
+.linkwrapper:hover {
+    color: #eee;
+}
+.linkwrapper:hover i {
+    color: #eee !important;
+}

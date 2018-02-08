@@ -10,26 +10,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
-
-.app > .header {
-    height: 4em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000;
-    color: #fff;
-    padding: 0em 20%;
-    border-bottom: 0.4em solid #a5a5a5;
-}
-
-.app > .header .search-wrapper {
-    height: 50%;
-    width: 30em;
-}
-
-.app > .header .cart-wrapper {
-    margin-left: auto;
+    background-color: #ececec;
 }
 
 .app .panel-container {

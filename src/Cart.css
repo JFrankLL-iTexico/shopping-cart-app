@@ -8,8 +8,6 @@
     background-color: rgba(0, 0, 0, 0.75);
     background-color: #000;
     width: 15em;
-    min-height: 5em;
-    max-height: 22em;
     border-radius: 0em 0em 0.5em 0.5em;
     box-shadow: 0px 2px 6px -2px #555;
     padding: 1em;
@@ -19,33 +17,115 @@
     transform-origin: top;
     overflow: hidden;
     overflow-y: auto;
+    z-index: 999;
 }
-
 .cart-wrapper:hover .list-wrapper {
     /* display: block; */
     transform: scaleY(1);
 }
 
-.cart-wrapper .list-wrapper .cart-row{
-    border-bottom: 2px solid #eee;
+.cart-wrapper .list-wrapper .scroll {
+    min-height: 5em;
+    max-height: 22em;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.cart-wrapper .list-wrapper .cart-row {
+    /* border-bottom: 1px solid #555; */
+    color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.25em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    border-top: 1px solid rgba(0, 0, 0, 0);
+}
+
+.cart-wrapper .list-wrapper .cart-row input[type=number] {
+    background-color: rgba(0, 0, 0, 0);
+    color: inherit;
+    border: none;
+    width: 2em;
+    outline: none;
+    font-size: 1em;
+    padding: 0em 0em 0em 1em;
+    border-radius: 0.5em;
+    margin-left: auto;
+}
+.cart-wrapper .list-wrapper .cart-row:hover {
+    color: #eee;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+}
+.cart-wrapper .list-wrapper .cart-row:hover input[type=number] {
+    background-color: #292929;
+}
+.cart-wrapper .list-wrapper .cart-row:hover i {
+    color: rgb(206, 73, 73);
+}
+
+.cart-wrapper .list-wrapper .cart-row i {
+    color: inherit;
+    margin-left: auto;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0);
+    transition: all 128ms ease-in-out;
+}
+.cart-wrapper .list-wrapper .cart-row:hover i:hover {
+    /* color: rgba(0, 0, 0, 0); */
+    border-color: rgb(206, 73, 73);
+    border-radius: 50%;
 }
 
 .cart-wrapper .cart {
     display: flex;
     align-items: center;
     display: inline;
-    color: #555 !important;
+    color: #555;
     cursor: pointer;
 }
 .cart-wrapper .cart:hover {
-    color: #eee !important;
+    color: #eee;
 }
 
 .cart-wrapper .cart i {
     display: inline;
-    color: #555 !important;
+    color: #555;
     cursor: pointer;
 }
 .cart-wrapper .cart:hover i {
-    color: #eee !important;
+    color: #eee;
+}
+
+.cart-wrapper .list-wrapper .order-tools {
+    background-color: red;
+}
+
+.cart-wrapper .list-wrapper .order-tools .tool {
+    margin: 0.25em;
+    border-radius: 0.25em;
+    color: #eee;
+    display: inline-block;
+    font-size: 1em;
+    border: none;
+    padding: 0.25em;
+    width: 33.33%;
+    cursor: pointer;
+    outline: none;
+}
+
+.cart-wrapper .list-wrapper .order-tools .tool.tool-accept {
+    background-color: rgb(103, 170, 103);
+    float: left;
+}
+.cart-wrapper .list-wrapper .order-tools .tool.tool-accept:hover {
+    background-color: green;
+}
+
+.cart-wrapper .list-wrapper .order-tools .tool.tool-abort {
+    background-color: rgb(161, 80, 80);
+    float: right;
+}.cart-wrapper .list-wrapper .order-tools .tool.tool-abort:hover {
+    background-color: red;
 }

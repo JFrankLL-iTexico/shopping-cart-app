@@ -10,6 +10,7 @@ function ProductGrid(props) {
           key={product._id}
           product={product}
           addToCart={props.addToCart}
+          deleteMe={props.removeProduct}
         />
       );
     });
@@ -17,7 +18,6 @@ function ProductGrid(props) {
 }
 
 class ProductList extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -25,6 +25,7 @@ class ProductList extends Component {
     };
   }
 
+  // #region lifecycle
   componentWillMount() {
     // Called the first time the component is loaded right before the component is added to the page
   }
@@ -47,12 +48,14 @@ class ProductList extends Component {
   componentWillUnmount() {
     // Called when the component is removed
   }
+  // #endregion
 
   render() {
     return (
       <ProductGrid
         products={this.state.products}
         addToCart={this.props.addToCart}
+        removeProduct={this.props.removeProduct}
       />
     );
   }
