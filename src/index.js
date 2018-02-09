@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import App from './App';
-import Home from './components/Home';
-import About from './components/About';
-import ProductDetail from './components/ProductDetail';
+import Navigation from './components/Navigation';
+import Products from './components/products/Products';
+import Home from './components/home/Home';
+import About from './components/about/About';
+import ProductDetail from './components/products/ProductDetail';
 
 const app = document.getElementById('root');
 
-const routes = [
+const routesList = [
   {
     path: '/',
     exact: true,
@@ -17,16 +18,18 @@ const routes = [
   {
     path: '/products',
     exact: true,
-    component: () => <App />,
+    component: () => <Products />,
   },
   {
     path: '/about',
     exact: true,
     component: () => <About />,
   },
-].map((route, index) => (
+];
+
+const routes = routesList.map((route, index) => (
   <Route
-    key={`route-${index}}`}
+    key={`route-${index.toString()}}`}
     path={route.path}
     exact={route.exact}
     component={route.component}
@@ -34,14 +37,16 @@ const routes = [
 ));
 
 
-const unlistedRoutes = [
+const unlistedRoutesList = [
   {
     path: '/products/:id',
     component: ProductDetail,
   },
-].map((route, index) => (
+];
+
+const unlistedRoutes = unlistedRoutesList.map((route, index) => (
   <Route
-    key={`unlisted-route-${index}}`}
+    key={`unlisted-route-${index.toString()}}`}
     path={route.path}
     component={route.component}
   />
@@ -50,6 +55,7 @@ const unlistedRoutes = [
 ReactDOM.render(
   <Router>
     <Switch>
+      <Navigation />
       {routes}
       {unlistedRoutes}
     </Switch>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import * as ProductController from '../controllers/productController';
+import PropTypes from 'prop-types';
+import * as ProductController from '../../controllers/productController';
 import Navigation from '../Navigation';
 import './ProductDetail.css';
 
@@ -37,7 +38,7 @@ class ProductDetail extends Component {
   // #endregion
 
   fetchData() {
-    const id = this.state.id;
+    const { id } = this.state;
     ProductController.fetchProduct(id, (err, data) => {
       if (!err) {
         this.setState({
@@ -60,7 +61,7 @@ class ProductDetail extends Component {
     };
     ProductController.updateProduct(id, body, (err, result) => {
       if (!err) {
-        //TODO: alert successful transaction
+        // TODO: alert successful transaction
       }
     });
   }
@@ -93,7 +94,7 @@ class ProductDetail extends Component {
   // #endregion
 
   render() {
-    return (this.state.show &&
+    const productDetailBody = (this.state.show &&
       <div>
         <Navigation />
         <div className="product-detail">
@@ -147,7 +148,13 @@ class ProductDetail extends Component {
         </div>
       </div>
     );
+    return productDetailBody;
   }
 }
+
+ProductDetail.propTypes = {
+  // eslint-disable-next-line
+  match: PropTypes.any.isRequired,
+};
 
 export default ProductDetail;

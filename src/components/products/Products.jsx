@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import ProductList from './components/ProductList';
-import SearchBar from './components/SearchBar';
+import ProductList from './ProductList';
+import SearchBar from './SearchBar';
 import Cart from './Cart';
-import * as ProductController from './controllers/productController';
-import * as OrderController from './controllers/orderController';
-import './App.css';
-import Navigation from './Navigation';
+import * as ProductController from '../../controllers/productController';
+import * as OrderController from '../../controllers/orderController';
+import './Products.css';
+import Navigation from '../Navigation';
 
-class App extends Component {
+class Products extends Component {
   constructor() {
     super();
     this.state = {
@@ -146,4 +146,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Products;

@@ -28,7 +28,8 @@ function Row(props) {
 }
 
 Row.propTypes = {
-  product: PropTypes.isRequired,
+  // eslint-disable-next-line
+  product: PropTypes.object.isRequired,
   updateQuantity: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
 };

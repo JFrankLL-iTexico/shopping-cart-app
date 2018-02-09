@@ -1,4 +1,5 @@
 import MaterialIcon from 'material-icons-react';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
@@ -54,7 +55,7 @@ class Navigation extends Component {
 
   render() {
     const links = this.state.listedLinks.map((link, index) => (
-      <Link key={`link-${index}`} to={link.route} href={link.route}>
+      <Link key={`link-${index.toString()}`} to={link.route} href={link.route}>
         <div className="linkwrapper">
           <MaterialIcon icon={link.icon} />
           <span>{link.text}</span>
@@ -69,5 +70,11 @@ class Navigation extends Component {
     );
   }
 }
+
+Navigation.propTypes = {
+  // eslint-disable-next-line
+  extraComponents: PropTypes.any,
+};
+
 
 export default Navigation;

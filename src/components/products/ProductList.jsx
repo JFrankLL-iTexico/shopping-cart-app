@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './ProductList.css';
 import Product from './Product';
 
 function ProductGrid(props) {
   const products = !props.products ? [] :
     props.products.map((product) => {
-      return (
+      const productGridBody = (
         <Product
           key={product._id}
           product={product}
@@ -13,9 +14,17 @@ function ProductGrid(props) {
           deleteMe={props.removeProduct}
         />
       );
+      return productGridBody;
     });
   return (<div className="products-grid">{products}</div>);
 }
+
+ProductGrid.propTypes = {
+  // eslint-disable-next-line
+  products: PropTypes.array.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  removeProduct: PropTypes.func.isRequired,
+};
 
 class ProductList extends Component {
   constructor() {
@@ -60,5 +69,10 @@ class ProductList extends Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  removeProduct: PropTypes.func.isRequired,
+};
 
 export default ProductList;
