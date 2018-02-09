@@ -54,11 +54,13 @@ const unlistedRoutes = unlistedRoutesList.map((route, index) => (
 
 ReactDOM.render(
   <Router>
-    <Switch>
-      <Navigation />
-      {routes}
-      {unlistedRoutes}
-    </Switch>
+    <div>
+      <Navigation extraComponents={[<div>Hola</div>]} />
+      <Switch>
+        {routes}
+        {unlistedRoutes}
+      </Switch>
+    </div>
   </Router>,
   app,
 );

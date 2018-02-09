@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as ProductController from '../../controllers/productController';
-import Navigation from '../Navigation';
 import './ProductDetail.css';
 
 class ProductDetail extends Component {
@@ -96,7 +95,6 @@ class ProductDetail extends Component {
   render() {
     const productDetailBody = (this.state.show &&
       <div>
-        <Navigation />
         <div className="product-detail">
           <div className="img-wrapper">
             <img src={this.state.imageUrl} alt="" />

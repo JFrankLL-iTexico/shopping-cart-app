@@ -62,12 +62,12 @@ class Navigation extends Component {
         </div>
       </Link>
     ));
-    return (
+    const navigationBody = (
       <header className="header">
         {links}
-        {this.props.extraComponents}
       </header>
     );
+    return navigationBody;
   }
 }
 

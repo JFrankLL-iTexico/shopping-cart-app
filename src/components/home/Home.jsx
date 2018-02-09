@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navigation from '../Navigation';
 import Auth from '../auth/Auth';
 import Register from '../auth/Register';
 import './Home.css';
@@ -36,7 +35,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <div className="container-wrapper">
           <Auth />
           <span className="line" />

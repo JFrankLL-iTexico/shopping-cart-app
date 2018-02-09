@@ -15,15 +15,6 @@ header {
     }
 }
 
-header .search-wrapper {
-    height: 50%;
-    width: 30em;
-}
-
-header .cart-wrapper {
-    margin-left: auto;
-}
-
 a {
     text-decoration: none;
 }

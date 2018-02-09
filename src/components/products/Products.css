@@ -28,3 +28,19 @@ body {
 .app .panel-container .cart-panel {
     background-color: red;
 }
+
+.search-comp-wrapper {
+    background-color: #a5a5a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-comp-wrapper .search-wrapper {
+    height: 50%;
+    width: 30em;
+}
+
+.search-comp-wrapper .cart-wrapper {
+
+}

@@ -5,7 +5,6 @@ import Cart from './Cart';
 import * as ProductController from '../../controllers/productController';
 import * as OrderController from '../../controllers/orderController';
 import './Products.css';
-import Navigation from '../Navigation';
 
 class Products extends Component {
   constructor() {
@@ -116,21 +115,19 @@ class Products extends Component {
   render() {
     const appBody = (
       <div className="app">
-        <Navigation
-          extraComponents={[
-            <SearchBar
-              key="extra-0"
-              handleSearch={this.goSearch}
-            />,
-            <Cart
-              key="extra-1"
-              cart={this.state.cart}
-              className="cart"
-              removeFromCart={this.removeFromCart}
-              createOrder={this.createOrder}
-            />,
-          ]}
-        />
+        <div className="search-comp-wrapper">
+          <SearchBar
+            key="extra-0"
+            handleSearch={this.goSearch}
+          />
+          <Cart
+            key="extra-1"
+            cart={this.state.cart}
+            className="cart"
+            removeFromCart={this.removeFromCart}
+            createOrder={this.createOrder}
+          />
+        </div>
         <div className="panel-container">
           <div className="panel products-panel">
             <ProductList

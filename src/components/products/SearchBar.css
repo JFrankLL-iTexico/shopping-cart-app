@@ -5,7 +5,7 @@
 .search-wrapper .search {
     border: none;
     outline: none;
-    background-color: #292929;
+    background-color: #eeeeee;
     font-size: 1em;
     color: #9e9e9e;
     border-radius: 0.25em 0em 0em 0.25em;
@@ -32,7 +32,7 @@
 }
 
 .search-wrapper .search:focus {
-    background-color: #bbb;
+    background-color: #eee;
     color: #292929;
 }
 

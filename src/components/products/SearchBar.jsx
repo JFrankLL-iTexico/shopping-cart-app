@@ -47,7 +47,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    return (
+    const searchBarBody = (
       <div className="search-wrapper">
         <input
           className="search"
@@ -72,6 +72,7 @@ class SearchBar extends Component {
         </div>
       </div>
     );
+    return searchBarBody;
   }
 }
 
