@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MaterialIcon from 'material-icons-react';
 import { Link } from 'react-router-dom';
 import './Product.css';
@@ -37,8 +38,8 @@ class Product extends Component {
   // #endregion
 
   render() {
-    const product = this.state.product;
-    return (
+    const { product } = this.state;
+    const componentBody = (
       <div className="product">
         <div className="header">
           <span className="title">{product.name}</span>
@@ -85,7 +86,16 @@ class Product extends Component {
         </div>
       </div>
     );
+
+    return componentBody;
   }
 }
+
+Product.propTypes = {
+  // eslint-disable-next-line
+  product: PropTypes.object.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  deleteMe: PropTypes.func.isRequired,
+};
 
 export default Product;

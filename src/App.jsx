@@ -87,7 +87,9 @@ class App extends Component {
   }
   fetchOrders() {
     OrderController.fetchOrders((err, result) => {
-      console.log(result);
+      if (err) {
+        console.log(err);
+      }
     });
   }
   createOrder() {
@@ -112,16 +114,16 @@ class App extends Component {
   // #endregion
 
   render() {
-    return (
+    const appBody = (
       <div className="app">
         <Navigation
           extraComponents={[
             <SearchBar
-              key="extra-1"
+              key="extra-0"
               handleSearch={this.goSearch}
             />,
             <Cart
-              key="extra-2"
+              key="extra-1"
               cart={this.state.cart}
               className="cart"
               removeFromCart={this.removeFromCart}
@@ -140,6 +142,7 @@ class App extends Component {
         </div>
       </div>
     );
+    return appBody;
   }
 }
 

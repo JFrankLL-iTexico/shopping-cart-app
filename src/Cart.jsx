@@ -1,4 +1,5 @@
 import MaterialIcon from 'material-icons-react';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import './Cart.css';
 
@@ -10,7 +11,7 @@ function Row(props) {
         type="Number"
         defaultValue={1}
         onChange={(e) => {
-          const value = e.target.value;
+          const { value } = e.target;
           props.updateQuantity(props.product._id, value);
         }}
       />
@@ -25,6 +26,12 @@ function Row(props) {
     </div>
   );
 }
+
+Row.propTypes = {
+  product: PropTypes.isRequired,
+  updateQuantity: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+};
 
 class Cart extends Component {
   constructor(props) {
@@ -82,7 +89,7 @@ class Cart extends Component {
     const cartItemsRows = !this.state.cartItems.length
       ? (<div>Empty cart</div>)
       : this.state.cartItems.map((product) => {
-        return (
+        const rowBody = (
           <Row
             key={`cart-row-${product._id}`}
             product={product}
@@ -90,9 +97,10 @@ class Cart extends Component {
             updateQuantity={this.updateQuantity}
           />
         );
+        return rowBody;
       });
 
-    return (
+    const componentBody = (
       <div className="cart-wrapper">
         <span className="cart">
           <MaterialIcon icon="shopping_cart" />
@@ -119,7 +127,16 @@ class Cart extends Component {
         </div>
       </div>
     );
+
+    return componentBody;
   }
 }
+
+Cart.propTypes = {
+  // eslint-disable-next-line
+  cart: PropTypes.array.isRequired,
+  createOrder: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+};
 
 export default Cart;

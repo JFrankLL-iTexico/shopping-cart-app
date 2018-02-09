@@ -9,7 +9,6 @@ html {
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: #ececec;
 }
 
@@ -24,9 +23,6 @@ body {
 
 .app .panel-container .products-panel {
     background-color: #ececec;
-    height: 92vh;
-    overflow: hidden;
-    overflow-y: scroll;
 }
 
 .app .panel-container .cart-panel {
