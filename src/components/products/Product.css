@@ -48,6 +48,9 @@
 .product .footer .detail {
     color: #555;
     text-align: center;
+    max-height: 8em;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .product .footer .detail.price {

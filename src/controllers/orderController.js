@@ -1,6 +1,6 @@
 import Request from 'superagent';
 
-const baseUrl = 'http://localhost:3000/api/order';
+const baseUrl = 'http://10.40.10.53:3000/api/order';
 
 export function fetchOrders(cb) {
   const url = baseUrl;

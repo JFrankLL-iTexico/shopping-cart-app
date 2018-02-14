@@ -13,7 +13,9 @@ body {
 }
 
 .app .panel-container {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .app .panel-container .panel {
@@ -23,6 +25,7 @@ body {
 
 .app .panel-container .products-panel {
     background-color: #ececec;
+
 }
 
 .app .panel-container .cart-panel {
@@ -37,10 +40,16 @@ body {
 }
 
 .search-comp-wrapper .search-wrapper {
-    height: 50%;
-    width: 30em;
+    height: 2em;
+    width: 50%;
+    margin: 0.25em;
 }
 
+@media (max-width: 768px) {
+    .search-comp-wrapper .search-wrapper {
+        width: 65%;
+    }
+}
 .search-comp-wrapper .cart-wrapper {
 
 }

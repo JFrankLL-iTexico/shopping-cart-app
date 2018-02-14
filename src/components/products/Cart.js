@@ -34,7 +34,7 @@ Row.propTypes = {
   removeFromCart: PropTypes.func.isRequired,
 };
 
-class Cart extends Component {
+export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -139,5 +139,3 @@ Cart.propTypes = {
   createOrder: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
 };
-
-export default Cart;

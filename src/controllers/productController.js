@@ -1,12 +1,17 @@
 import Request from 'superagent';
 
-const baseUrl = 'http://localhost:3000/api/product';
+const baseUrl = 'http://10.40.10.53:3000/api/product';
 
-export function fetchProducts(mode = null, value = '', cb) {
-  let url = baseUrl;
-  if (mode && value.length > 0) {
-    url += `/search?${mode}=${value}`;
-  }
+export function fetchProducts(paramObj, cb) {
+  const {
+    category,
+    name,
+    page,
+    items,
+  } = paramObj;
+  const pagesParams = `page=${page}&items=${items}`;
+  const searchParams = `category=${category}&name=${name}`;
+  const url = `${baseUrl}?${searchParams}&${pagesParams}`;
   Request.get(url)
     .set('Content-Type', 'application/json')
     .end(cb);

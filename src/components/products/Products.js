@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
 import Cart from './Cart';
+import Pages from './Pages';
 import * as ProductController from '../../controllers/productController';
 import * as OrderController from '../../controllers/orderController';
 import './Products.css';
 
-class Products extends Component {
+export default class Products extends Component {
   constructor() {
     super();
     this.state = {
       products: [],
       cart: [],
+      page: 0,
+      itemsPerPage: 1,
     };
     this.goSearch = this.goSearch.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -19,6 +22,7 @@ class Products extends Component {
     this.removeProduct = this.removeProduct.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
     this.createOrder = this.createOrder.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   // #region lifecycle methods
@@ -44,8 +48,15 @@ class Products extends Component {
   }
   // #endregion
   // #region ProductList
-  fetchProducts(mode = null, value = '') {
-    ProductController.fetchProducts(mode, value, (err, result) => {
+  fetchProducts(category = '', name = '') {
+    const { page } = this.state;
+    const paramObj = {
+      category,
+      name,
+      page,
+      items: this.state.itemsPerPage,
+    };
+    ProductController.fetchProducts(paramObj, (err, result) => {
       if (!err) {
         this.setState({
           products: result.body,
@@ -63,6 +74,14 @@ class Products extends Component {
         });
       }
     });
+  }
+  async changePage(forward = true) {
+    let page = forward ? (this.state.page + 1) : (this.state.page - 1);
+    page = page < 1 ? 0 : page;
+    await this.setState({
+      page,
+    });
+    this.fetchProducts();
   }
   // #endregion
   // #region Search
@@ -137,10 +156,11 @@ class Products extends Component {
             />
           </div>
         </div>
+        <Pages
+          changePage={this.changePage}
+        />
       </div>
     );
     return appBody;
   }
 }
-
-export default Products;

@@ -7,7 +7,9 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       inputValue: '',
-      searchMode: 'value',
+      valueMode: 'name',
+      name: '',
+      category: '',
     };
   }
 
@@ -34,15 +36,32 @@ class SearchBar extends Component {
   }
   // #endregion
 
-  updateInputValue(evt) {
-    this.setState({
-      inputValue: evt.target.value,
-    });
+  async handleUpdateInputValue(evt) {
+    await this.setState({ inputValue: evt.target.value });
+    const mode = this.state.valueMode;
+    switch (mode) {
+      case 'name':
+        this.setState({ name: this.state.inputValue });
+        break;
+      case 'category':
+        this.setState({ category: this.state.inputValue });
+        break;
+      default:
+        break;
+    }
   }
 
-  updateSelectValue(evt) {
+  handleChangeValueMode(evt) {
+    const valueMode = evt.target.value;
+    let inputValue;
+    switch (valueMode) {
+      case 'name': inputValue = this.state.name; break;
+      case 'category': inputValue = this.state.category; break;
+      default: break;
+    }
     this.setState({
-      searchMode: evt.target.value,
+      valueMode,
+      inputValue,
     });
   }
 
@@ -54,19 +73,19 @@ class SearchBar extends Component {
           type="text"
           placeholder="Search..."
           value={this.state.inputValue}
-          onChange={evt => this.updateInputValue(evt)}
+          onChange={evt => this.handleUpdateInputValue(evt)}
           onKeyUp={(evt) => {
             if (this.state.inputValue === '') {
-              this.props.handleSearch('value', '');
+              this.props.handleSearch('', '');
             }
             if (evt.key === 'Enter') {
-              this.props.handleSearch(this.state.searchMode, this.state.inputValue);
+              this.props.handleSearch(this.state.category, this.state.name);
             }
           }}
         />
         <div className="category">
-          <select onChange={evt => this.updateSelectValue(evt)}>
-            <option value="value">Name</option>
+          <select onChange={evt => this.handleChangeValueMode(evt)}>
+            <option value="name">Name</option>
             <option value="category">Category</option>
           </select>
         </div>

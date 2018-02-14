@@ -1,0 +1,27 @@
+.pages-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.pages-wrapper .page {
+  background-color: #cacaca;
+  color: #7a7a7a;
+  display: inline;
+  padding: 0.5em;
+  margin: 0.25em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  border-bottom: 1px solid #b3b3b3;
+  box-shadow: 0px 1px 6px -2px #555;
+  min-width: 3em;
+  text-align: center;
+}
+
+.pages-wrapper .page:hover {
+  background-color: #afafaf;
+  color: #fff;
+  box-shadow: none;
+}
