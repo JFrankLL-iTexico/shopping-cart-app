@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as cartActions from '../../actions/cartActions';
+
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
 import Cart from './Cart';
@@ -7,14 +10,13 @@ import * as ProductController from '../../controllers/productController';
 import * as OrderController from '../../controllers/orderController';
 import './Products.css';
 
-export default class Products extends Component {
+class Products extends Component {
   constructor() {
     super();
     this.state = {
       products: [],
-      cart: [],
       page: 0,
-      itemsPerPage: 1,
+      itemsPerPage: 8,
     };
     this.goSearch = this.goSearch.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -91,17 +93,16 @@ export default class Products extends Component {
   // #endregion
   // #region Cart
   addToCart(product) {
-    const productAux = { ...product, quantity: 1 };
-    const cart = this.state.cart.slice();
-    if (!cart.some(item => item._id === productAux.product)) {
-      cart.push(productAux);
-      this.setState({ cart });
+    const currentCart = this.props.currentCartItems.slice();
+    if (!currentCart.some(item => item._id === product._id)) {
+      const productAux = { ...product, quantity: 1 };
+      this.props.addCartItem(productAux);
+    } else {
+      alert('Item already added');
     }
   }
   removeFromCart(id) {
-    let cart = this.state.cart.slice(0);
-    cart = cart.filter(item => id !== item._id);
-    this.setState({ cart });
+    this.props.removeItem(id);
   }
   fetchOrders() {
     OrderController.fetchOrders((err, result) => {
@@ -141,9 +142,10 @@ export default class Products extends Component {
           />
           <Cart
             key="extra-1"
-            cart={this.state.cart}
+            cart={this.props.currentCartItems}
             className="cart"
             removeFromCart={this.removeFromCart}
+            clearCart={this.props.clearCart}
             createOrder={this.createOrder}
           />
         </div>
@@ -164,3 +166,22 @@ export default class Products extends Component {
     return appBody;
   }
 }
+
+const mapStateToProps = state => ({
+  currentCartItems: state.cartReducer.items,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getCartItems: () => {
+    dispatch(cartActions.getItems());
+  },
+  addCartItem: (item) => {
+    dispatch(cartActions.addItem(item));
+  },
+  removeItem: (id) => {
+    dispatch(cartActions.removeItem(id));
+  },
+  clearCart: () => dispatch(cartActions.clearItems()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

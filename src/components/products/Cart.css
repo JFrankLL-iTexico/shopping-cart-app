@@ -57,7 +57,7 @@
     /* border-bottom: 1px solid #555; */
     color: #555;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 0.25em;
     border-bottom: 1px solid rgba(0, 0, 0, 0);

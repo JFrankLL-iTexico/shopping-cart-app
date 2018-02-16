@@ -7,14 +7,17 @@ function Row(props) {
   return (
     <div className="cart-row">
       <span className="name">{props.product.name}</span>
-      <input
-        type="Number"
-        defaultValue={1}
-        onChange={(e) => {
-          const { value } = e.target;
-          props.updateQuantity(props.product._id, value);
-        }}
-      />
+      <div>
+        qty:  
+        <input
+          type="Number"
+          defaultValue={1}
+          onChange={(e) => {
+            const { value } = e.target;
+            props.updateQuantity(props.product._id, value);
+          }}
+        />
+      </div>
       <span
         role="presentation"
         onClick={() => {
@@ -81,9 +84,7 @@ export default class Cart extends Component {
   }
 
   clearCartItems() {
-    this.setState({
-      cartItems: [],
-    });
+    this.props.clearCart();
   }
 
   render() {

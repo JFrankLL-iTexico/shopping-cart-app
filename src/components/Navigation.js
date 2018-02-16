@@ -24,6 +24,11 @@ class Navigation extends Component {
         icon: 'info',
         text: 'ABOUT',
       },
+      {
+        route: '/cart',
+        icon: 'shopping_cart',
+        text: 'CART',
+      },
     ];
 
     this.state = {
